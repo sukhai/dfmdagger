@@ -7,6 +7,7 @@ buildscript {
         'android_junit'       : '1.1.0',
         'android_orchestrator': '1.1.1',
         'dagger'              : '2.22.1',
+        'google_play'         : '1.6.3',
         'gradle'              : '3.5.0',
         'jacoco'              : '0.8.4',
         'junit'               : '5.4.0',
