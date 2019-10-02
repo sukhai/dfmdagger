@@ -22,7 +22,13 @@ import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.ContentProvider
 import androidx.fragment.app.Fragment
-import dagger.android.*
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import dagger.android.HasBroadcastReceiverInjector
+import dagger.android.HasContentProviderInjector
+import dagger.android.HasServiceInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
