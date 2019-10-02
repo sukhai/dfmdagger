@@ -1,4 +1,4 @@
-https://travis-ci.com/sukhai/fm_dagger.svg?branch=master
+[![Build Status](https://travis-ci.com/sukhai/fm_dagger.svg?branch=master)](https://travis-ci.com/sukhai/fm_dagger)
 
 # fm_dagger
 A small Android library that reduce the boilerplate code for your project when using
