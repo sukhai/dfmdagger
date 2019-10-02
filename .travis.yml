@@ -24,9 +24,9 @@ install: true
 
 jobs:
   include:
-    - stage: Build
-      script: ./gradlew build
     - stage: Verification
       script: ./gradlew ktlint
+    - stage: Build
+      script: ./gradlew build
     - stage: Unit Tests
       script: ./gradlew testDebugUnitTest
