@@ -133,6 +133,47 @@ fun Activity.startActivityForResult(
 }
 
 /**
+ * Launch a new activity by using [Fragment.startActivity], but before launching this
+ * new activity, perform application injection for the given [featureModule].
+ *
+ * @param featureModule the [FeatureModule] to be injected into the dagger dependency graph.
+ * @param intent the intent to start.
+ * @param options Additional options for how the Activity should be started. See
+ * [Context.startActivity] for more details.
+ */
+fun Fragment.startActivity(
+    featureModule: FeatureModule,
+    intent: Intent,
+    options: Bundle? = null
+) {
+    inject(featureModule)
+
+    startActivity(intent, options)
+}
+
+/**
+ * Launch a new activity for which you would like a result when it finished, but before launching
+ * this new activity, perform application injection for the given [featureModule].
+ *
+ * @param featureModule the [FeatureModule] to be injected into the dagger dependency graph.
+ * @param intent the intent to start.
+ * @param requestCode if >= 0, this code will be returned in onActivityResult() when the activity
+ * exits.
+ * @param options Additional options for how the Activity should be started. See
+ * [Context.startActivity] for more details.
+ */
+fun Fragment.startActivityForResult(
+    featureModule: FeatureModule,
+    intent: Intent,
+    requestCode: Int,
+    options: Bundle? = null
+) {
+    inject(featureModule)
+
+    startActivityForResult(intent, requestCode, options)
+}
+
+/**
  * Commits this transaction synchronously. This is essentially calling
  * [FragmentTransaction.commitNow] after doing an injection for a [FeatureModule]. This is required
  * before loading any [Fragment] from other module.
