@@ -150,6 +150,8 @@ fun Activity.startActivityForResult(
  *         inject(MyModule)
  *     }
  * ```
+ *
+ * @param inject the block to inject a [FeatureModule] into the application.
  */
 fun FragmentTransaction.commitNow(inject: () -> Unit) {
     inject()
