@@ -18,6 +18,7 @@ package com.sukhaikoh.fm_dagger.utils
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -84,6 +85,11 @@ fun Fragment.inject(featureModule: FeatureModule) {
  *
  * startActivity(myFeature, intentTo(myActivity))
  * ```
+ *
+ * @param featureModule the [FeatureModule] to be injected into the dagger dependency graph.
+ * @param intent the intent to start.
+ * @param options Additional options for how the Activity should be started. See
+ * [Context.startActivity] for more details.
  */
 fun Activity.startActivity(
     featureModule: FeatureModule,
@@ -120,6 +126,13 @@ fun Activity.startActivity(
  *
  * startActivityForResult(myFeature, intentTo(myActivity), MY_REQUEST_CODE)
  * ```
+ *
+ * @param featureModule the [FeatureModule] to be injected into the dagger dependency graph.
+ * @param intent the intent to start.
+ * @param requestCode if >= 0, this code will be returned in onActivityResult() when the activity
+ * exits.
+ * @param options Additional options for how the Activity should be started. See
+ * [Context.startActivity] for more details.
  */
 fun Activity.startActivityForResult(
     featureModule: FeatureModule,
