@@ -32,13 +32,33 @@ import com.sukhaikoh.fm_dagger.FeatureModuleApplication
  *
  * If this [Application] is a subtype of [FeatureModuleApplication], then
  * [FeatureModuleApplication.inject] will be called for the given [featureModule],
- * otherwise nothing will happen.
+ * otherwise [onError] will be called.
  *
  * @param featureModule the [FeatureModule] to be injected into this [Application].
  */
-fun Application.injectIfPossible(featureModule: FeatureModule) {
+fun Application.injectIfPossible(featureModule: FeatureModule, onError: (Throwable) -> Unit = {}) {
     if (this is FeatureModuleApplication) {
         inject(featureModule)
+    } else {
+        onError(IllegalStateException("This Application is not a subtype of FeatureModuleApplication"))
+    }
+}
+
+/**
+ * Inject the given [featureModule] if possible. It is only possible to inject the
+ * [featureModule] if this [Context] is a type of [FeatureModuleApplication] or [Activity].
+ *
+ * If this [Context] is a type of [FeatureModuleApplication] or [Activity], then
+ * [FeatureModuleApplication.inject] will be called for the given [featureModule],
+ * otherwise [onError] will be called.
+ *
+ * @param featureModule the [FeatureModule] to be injected into this [Context].
+ */
+fun Context.injectIfPossible(featureModule: FeatureModule, onError: (Throwable) -> Unit = {}) {
+    when (this) {
+        is FeatureModuleApplication -> inject(featureModule)
+        is Activity -> inject(featureModule)
+        else -> onError(IllegalStateException("This Context is not a FeatureModuleApplication or Activity"))
     }
 }
 
