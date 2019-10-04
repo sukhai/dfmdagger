@@ -23,8 +23,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.sukhaikoh.fm_dagger.AddressableObject
 import com.sukhaikoh.fm_dagger.FeatureModule
 import com.sukhaikoh.fm_dagger.FeatureModuleApplication
+import com.sukhaikoh.fm_dagger.newInstance
 
 /**
  * Inject the given [featureModule] if possible. It is only possible to inject the
@@ -231,4 +233,39 @@ fun FragmentTransaction.commitNow(inject: () -> Unit) {
     inject()
 
     commitNow()
+}
+
+/**
+ * Create a new [Fragment] with the given [addressableObject].
+ *
+ * ### Example
+ * ```
+ * object MyFragment : AddressableObject {
+ *     override val className = "com.my.package.MyFragment"
+ * }
+ *
+ * object MyModule : FeatureModule {
+ *     override val injectorName = "com.my.package.MyInjector"
+ * }
+ *
+ *
+ * // In an Activity or Fragment
+ * inject(MyModule)
+ * supportFragmentManager.beginTransaction()
+ *     .replace(R.id.my_container, newFragment(MyFragment))
+ *     .commitNow()
+ *
+ * // Or with the extension function
+ * supportFragmentManager.beginTransaction()
+ *     .replace(R.id.my_container, newFragment(MyFragment))
+ *     .commitNow(MyModule)
+ * ```
+ *
+ * @param addressableObject the [AddressableObject] this new [Fragment] can address to.
+ * @return a new [Fragment] that is addressable by the [addressableObject].
+ */
+fun newFragment(addressableObject: AddressableObject, args: Bundle? = null): Fragment {
+    val f = addressableObject.newInstance<Fragment>()
+    f.arguments = args
+    return f
 }
