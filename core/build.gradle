@@ -30,10 +30,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin_version}"
 
     implementation "com.google.android.play:core:${versions.google_play}"
 
     implementation "androidx.appcompat:appcompat:${versions.android_core}"
+
     implementation "com.google.dagger:dagger:${versions.dagger}"
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
     implementation "com.google.dagger:dagger-android-support:${versions.dagger}"

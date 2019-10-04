@@ -65,8 +65,8 @@ object FeatureOneModule : FeatureModule {
         override val className = "com.my.package.featureone.FeatureOneActivity"
     }
     
-    // if you want to access the feature module's fragment, implement AddressableFragment
-    object FeatureOneFragment : AddressableFragment {
+    // if you want to access the feature module's fragment, implement AddressableObject
+    object FeatureOneFragment : AddressableObject {
         override val className = "com.my.package.featureone.FeatureOneFragment"
     }
 }
@@ -182,18 +182,18 @@ class FeatureOneService : ServiceA {
     }
 }
 
-// Somewhere in your code where you want to access the implementation of ServiceA
-application.injectIfPossible(FeatureOneModule)
-try {
-    val service = Class.forName("com.my.package.featureone.FeatureOneService")
-        .kotlin
-        .createInstance() as ServiceA
-    service.doSomething()
-} catch (e: ClassNotFoundException) {
-    // ...
+// In your app module or other module that wants to access implementation of ServiceA
+object FeatureOneServiceObject : AddressableObject {
+    override val className = "com.my.package.featureone.FeatureOneService"
 }
 
-// createInstance() is part of org.jetbrains.kotlin:kotlin-reflect package
+// Somewhere in your code where you want to access the implementation of ServiceA
+// Note we specify the type as the interface name ServiceA instead of the implementation class
+// FeatureOneService, this is because we might not have access to the FeatureOne module.
+val serviceA = FeatureOneServiceObject.newInstance<ServiceA>()
+
+// or
+FeatureOneServiceObject.newInstance<ServiceA>() { serviceA -> serviceA.doSomething() }
 ```
 
 # Download
