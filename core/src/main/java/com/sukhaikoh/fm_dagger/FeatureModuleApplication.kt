@@ -71,7 +71,7 @@ import javax.inject.Inject
  *         AppModule::class
  *     ]
  * )
- * interface AppComponent : AndroidInjector<MyApplication> {
+ * interface AppComponent : AndroidInjector<MyApp> {
  *     @Component.Builder
  *     interface Builder {
  *         @BindsInstance
