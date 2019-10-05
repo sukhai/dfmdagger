@@ -14,11 +14,33 @@
  * limitations under the License.
  */
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
+    }
+}
+
 apply plugin: "org.jetbrains.dokka-android"
 
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    description = 'Create java doc jar'
+
+    archiveClassifier.set('javadoc')
+    from "$buildDir/javadoc"
 }
 
 dependencies {
