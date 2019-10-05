@@ -40,3 +40,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android:${versions.dagger}"
     implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
 }
+
+apply from: "$rootDir/gradle/publish.gradle"
