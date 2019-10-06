@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fm_dagger
+package com.sukhaikoh.fmdagger
 
 /**
  * An interface for declaring an object as a feature module that can be injected into dagger

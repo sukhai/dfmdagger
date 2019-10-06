@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fm_dagger
+package com.sukhaikoh.fmdagger
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import android.app.Application
+import android.content.Context
+import com.google.android.play.core.splitcompat.SplitCompat
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * An [Application] that extends [FeatureModuleApplication] with included [SplitCompat]
+ * installation.
  */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+abstract class SplitFeatureModuleApplication : FeatureModuleApplication() {
+    override fun attachBaseContext(p0: Context?) {
+        super.attachBaseContext(p0)
+        SplitCompat.install(this)
     }
 }

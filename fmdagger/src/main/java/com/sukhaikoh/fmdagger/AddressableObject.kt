@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fm_dagger
+package com.sukhaikoh.fmdagger
 
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.createInstance

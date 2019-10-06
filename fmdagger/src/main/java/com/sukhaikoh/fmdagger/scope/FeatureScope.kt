@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fm_dagger
+package com.sukhaikoh.fmdagger.scope
 
-import android.app.Application
-import android.content.Context
-import com.google.android.play.core.splitcompat.SplitCompat
+import javax.inject.Scope
 
 /**
- * An [Application] that extends [FeatureModuleApplication] with included [SplitCompat]
- * installation.
+ * Scope for a feature module.
+ *
+ * ### Example
+ * ```
+ * @FeatureScope
+ * @Component(
+ *     dependencies = [MyAppComponent::class],
+ *     modules = [AndroidInjectionModule::class, ...]
+ * )
+ * interface MyComponent {
+ *     ...
+ * }
+ * ```
  */
-abstract class SplitFeatureModuleApplication : FeatureModuleApplication() {
-    override fun attachBaseContext(p0: Context?) {
-        super.attachBaseContext(p0)
-        SplitCompat.install(this)
-    }
-}
+@Scope
+@Retention(AnnotationRetention.RUNTIME)
+annotation class FeatureScope
