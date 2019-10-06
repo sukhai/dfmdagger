@@ -28,5 +28,3 @@ jobs:
       script: ./gradlew ktlint
     - stage: Build
       script: ./gradlew build
-    - stage: Unit Tests
-      script: ./gradlew testDebugUnitTest

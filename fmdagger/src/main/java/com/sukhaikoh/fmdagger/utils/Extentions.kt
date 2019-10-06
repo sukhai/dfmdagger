@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fm_dagger.utils
+package com.sukhaikoh.fmdagger.utils
 
 import android.app.Activity
 import android.app.Application
@@ -23,10 +23,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.sukhaikoh.fm_dagger.AddressableObject
-import com.sukhaikoh.fm_dagger.FeatureModule
-import com.sukhaikoh.fm_dagger.FeatureModuleApplication
-import com.sukhaikoh.fm_dagger.newInstance
+import com.sukhaikoh.fmdagger.AddressableObject
+import com.sukhaikoh.fmdagger.FeatureModule
+import com.sukhaikoh.fmdagger.FeatureModuleApplication
+import com.sukhaikoh.fmdagger.newInstance
 
 /**
  * Inject the given [featureModule] if possible. It is only possible to inject the
