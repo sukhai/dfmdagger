@@ -9,7 +9,6 @@ buildscript {
         'android_orchestrator': '1.1.1',
         'dagger'              : '2.22.1',
         'dokka'               : '0.9.18',
-        'github_plugin'       : '0.4.2',
         'google_play'         : '1.6.3',
         'gradle'              : '3.5.0',
         'jacoco'              : '0.8.4',
@@ -30,7 +29,6 @@ buildscript {
         classpath "org.jacoco:org.jacoco.core:${versions.jacoco}"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:${versions.mannodermaus}"
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
-        classpath "co.riiid:gradle-github-plugin:${versions.github_plugin}"
         classpath "com.github.dcendents:android-maven-gradle-plugin:${versions.android_maven}"
     }
 }
