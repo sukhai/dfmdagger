@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fmdagger.utils
+package com.sukhaikoh.dfmdagger.utils
 
 import android.app.Activity
 import android.app.Application
@@ -23,10 +23,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.sukhaikoh.fmdagger.AddressableObject
-import com.sukhaikoh.fmdagger.FeatureModule
-import com.sukhaikoh.fmdagger.FeatureModuleApplication
-import com.sukhaikoh.fmdagger.newInstance
+import com.sukhaikoh.dfmdagger.AddressableObject
+import com.sukhaikoh.dfmdagger.FeatureModule
+import com.sukhaikoh.dfmdagger.FeatureModuleApplication
+import com.sukhaikoh.dfmdagger.newInstance
 
 /**
  * Inject the given [featureModule] if possible. It is only possible to inject the
