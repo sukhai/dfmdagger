@@ -1,2 +1,2 @@
-include ':fmdagger'
-rootProject.name='fmdagger'
+include ':dfmdagger'
+rootProject.name='dfmdagger'
