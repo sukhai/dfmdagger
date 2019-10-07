@@ -8,6 +8,7 @@ buildscript {
         'android_orchestrator': '1.1.1',
         'dagger'              : '2.22.1',
         'dokka'               : '0.9.18',
+        'github_plugin'       : '0.4.2',
         'google_play'         : '1.6.3',
         'gradle'              : '3.5.0',
         'jacoco'              : '0.8.4',
@@ -28,6 +29,7 @@ buildscript {
         classpath "org.jacoco:org.jacoco.core:${versions.jacoco}"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:${versions.mannodermaus}"
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
+        classpath "co.riiid:gradle-github-plugin:${versions.github_plugin}"
     }
 }
 
@@ -41,4 +43,46 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+String getEnvProperty(String key) {
+    String property = System.getenv(key)
+    if (property == null) {
+        try {
+            property = getProperty(key)
+        } catch (Exception ignored) {
+            // Ignored
+        }
+    }
+
+    if (property == null) {
+        property = getPropertyFromFile(
+            key,
+            rootProject.file('gradle.properties').newDataInputStream()
+        )
+    }
+    if (property == null) {
+        property = getPropertyFromFile(
+            key,
+            rootProject.file('local.properties').newDataInputStream()
+        )
+    }
+    if (property == null) {
+        property = getPropertyFromFile(
+            key,
+            ("${System.properties['user.home']}${File.separator}.gradle${File.separator}gradle.properties" as File).newDataInputStream()
+        )
+    }
+    return property
+}
+
+static String getPropertyFromFile(String key, InputStream inputStream) {
+    Properties properties = new Properties()
+    try {
+        properties.load(inputStream)
+    } catch (IOException ignored) {
+        // Ignored
+    }
+
+    return properties.getProperty(key)
 }

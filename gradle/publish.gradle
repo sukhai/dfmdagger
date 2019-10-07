@@ -43,6 +43,19 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     from "$buildDir/javadoc"
 }
 
+github {
+    owner = getEnvProperty("GITHUB_OWNER")
+    repo = getEnvProperty("GITHUB_REPO")
+    token = getEnvProperty("GITHUB_TOKEN")
+    tagName = getEnvProperty("TAG_NAME")
+    targetCommitish = getEnvProperty("TARGET_COMMITISH")
+    name = getEnvProperty("TAG_NAME")
+    body = getEnvProperty("RELEASE_NOTES")
+    assets = [
+        'fmdagger/build/outputs/aar/fmdagger-release.aar'
+    ]
+}
+
 dependencies {
     dokkaRuntime "org.jetbrains.dokka:dokka-fatjar:${versions.dokka}"
 }
