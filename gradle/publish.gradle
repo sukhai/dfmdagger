@@ -53,16 +53,6 @@ task classesJar(type: Jar) {
     from "$buildDir/intermediates/classes/release"
 }
 
-github {
-    owner = getEnvProperty("GITHUB_OWNER")
-    repo = getEnvProperty("GITHUB_REPO")
-    token = getEnvProperty("GITHUB_TOKEN")
-    tagName = getEnvProperty("ARTIFACT_VERSION")
-    targetCommitish = getEnvProperty("TARGET_COMMITISH")
-    name = getEnvProperty("ARTIFACT_VERSION")
-    body = getEnvProperty("RELEASE_NOTES")
-}
-
 artifacts {
     archives classesJar
     archives javadocJar
