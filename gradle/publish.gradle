@@ -26,10 +26,6 @@ buildscript {
 apply plugin: "org.jetbrains.dokka-android"
 apply plugin: "com.github.dcendents.android-maven"
 
-repositories {
-    maven { url "https://jitpack.io" }
-}
-
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
