@@ -24,6 +24,11 @@ buildscript {
 }
 
 apply plugin: "org.jetbrains.dokka-android"
+apply plugin: "com.github.dcendents.android-maven"
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
 
 dokka {
     outputFormat = 'html'
@@ -43,17 +48,29 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     from "$buildDir/javadoc"
 }
 
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+
+task classesJar(type: Jar) {
+    from "$buildDir/intermediates/classes/release"
+}
+
 github {
     owner = getEnvProperty("GITHUB_OWNER")
     repo = getEnvProperty("GITHUB_REPO")
     token = getEnvProperty("GITHUB_TOKEN")
-    tagName = getEnvProperty("TAG_NAME")
+    tagName = getEnvProperty("ARTIFACT_VERSION")
     targetCommitish = getEnvProperty("TARGET_COMMITISH")
-    name = getEnvProperty("TAG_NAME")
+    name = getEnvProperty("ARTIFACT_VERSION")
     body = getEnvProperty("RELEASE_NOTES")
-    assets = [
-        'fmdagger/build/outputs/aar/fmdagger-release.aar'
-    ]
+}
+
+artifacts {
+    archives classesJar
+    archives javadocJar
+    archives sourcesJar
 }
 
 dependencies {

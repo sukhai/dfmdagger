@@ -6,6 +6,9 @@ apply plugin: 'co.riiid.gradle'
 apply from: "$rootDir/gradle/ktlint.gradle"
 apply from: "$rootDir/gradle/tests.gradle"
 
+group = getEnvProperty("ARTIFACT_GROUP")
+version = getEnvProperty("ARTIFACT_VERSION")
+
 android {
     compileSdkVersion 28
 
@@ -34,6 +37,8 @@ android {
 }
 
 dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}"
     api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin_version}"
 
