@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fmdagger
+package com.sukhaikoh.dfmdagger
 
 import android.app.Activity
 import android.app.Application

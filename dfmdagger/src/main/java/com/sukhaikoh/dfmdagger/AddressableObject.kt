@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sukhaikoh.fmdagger
+package com.sukhaikoh.dfmdagger
 
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.createInstance
