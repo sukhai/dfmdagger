@@ -5,10 +5,10 @@ buildscript {
         'android_core'        : '1.1.0',
         'android_espresso'    : '3.2.0',
         'android_junit'       : '1.1.0',
-        'android_maven': '2.1',
+        'android_maven'       : '2.1',
         'android_orchestrator': '1.1.1',
         'dagger'              : '2.22.1',
-        'dokka'               : '0.9.18',
+        'dokka'               : '0.10.0',
         'google_play'         : '1.6.3',
         'gradle'              : '3.5.0',
         'jacoco'              : '0.8.4',
@@ -28,7 +28,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}"
         classpath "org.jacoco:org.jacoco.core:${versions.jacoco}"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:${versions.mannodermaus}"
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka}"
         classpath "com.github.dcendents:android-maven-gradle-plugin:${versions.android_maven}"
     }
 }
