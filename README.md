@@ -1,9 +1,10 @@
-[![Build Status](https://travis-ci.com/sukhai/fm_dagger.svg?branch=master)](https://travis-ci.com/sukhai/fm_dagger)
+[![Build Status](https://travis-ci.com/sukhai/dfmdagger.svg?branch=master)](https://travis-ci.com/sukhai/dfmdagger)
 
-# fm_dagger
+# dfmdagger
 A small Android library that reduce the boilerplate code for your project when using
-Android Dagger. This library allows you to use the Android Dagger (i.e `@ContributesAndroidInjector`) 
-to resolve the dependencies in Dynamic Feature Module without the need of writing boilerplate code. 
+Android Dagger with [Android Dynamic Feature](https://developer.android.com/studio/projects/dynamic-delivery). 
+This library allows you to use the Android Dagger (i.e `@ContributesAndroidInjector`) to resolve 
+the dependencies in Dynamic Feature Module without the need of writing boilerplate code. 
 
 ### Background
 This project is inspired by [Dependency injection in a multi module project](https://medium.com/androiddevelopers/dependency-injection-in-a-multi-module-project-1a09511c14b7)
@@ -19,8 +20,8 @@ any classes in the feature module.
 #### In `app` module
 ```kotlin
 // MyApp.kt
-class MyApp : FeatureModuleApplication() {
-    override fun applicationInjector(): AndroidInjector<out FeatureModuleApplication> {
+class MyApp : DynamicFeatureModuleApplication() {
+    override fun applicationInjector(): AndroidInjector<out DynamicFeatureModuleApplication> {
         return DaggerAppComponent.builder()
             .application(this)
             .build()
@@ -128,7 +129,7 @@ package com.my.package.featureone
 
 @Keep // adding this annotation so proguard/r8 will keep it for reflection purpose
 class FeatureOneInjector : FeatureModuleInjector() {
-    override fun inject(application: FeatureModuleApplication) {
+    override fun inject(application: DynamicFeatureModuleApplication) {
         DaggerFeatureOneComponent.builder()
             .appComponent(application.appComponent())
             .build()
