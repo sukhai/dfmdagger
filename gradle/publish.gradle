@@ -47,15 +47,7 @@ task sourcesJar(type: Jar) {
     from android.sourceSets.main.kotlin.srcDirs
 }
 
-task classesJar(type: Jar) {
-    group = 'jar'
-    description = 'Create classes jar'
-
-    from "$buildDir/tmp/kotlin-classes/release"
-}
-
 artifacts {
-    archives classesJar
     archives javadocJar
     archives sourcesJar
 }
