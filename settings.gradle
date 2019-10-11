@@ -1,2 +1,2 @@
-include ':dfmdagger'
 rootProject.name='dfmdagger'
+include ':dfmdagger', ':viewmodel'
