@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/gradle/android-library.gradle"
-apply from: "$rootDir/gradle/ktlint.gradle"
-apply from: "$rootDir/gradle/tests.gradle"
+package com.sukhaikoh.dfmdagger.viewmodel
 
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
+import dagger.Module
 
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-
+/**
+ * A dagger module that binds [ViewModelFactory] as a [ViewModelProvider.Factory]
+ * into the dependency graph.
+ */
+@Module
+abstract class ViewModelModule {
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
