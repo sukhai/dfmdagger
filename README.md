@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sukhai/dfmdagger.svg?branch=master)](https://travis-ci.com/sukhai/dfmdagger)
+[![Build Status](https://travis-ci.com/sukhai/dfmdagger.svg?branch=master)](https://travis-ci.com/sukhai/dfmdagger) [![](https://jitpack.io/v/sukhai/dfmdagger.svg)](https://jitpack.io/#sukhai/dfmdagger)
 
 # dfmdagger
 A small Android library that reduce the boilerplate code for your project when using
@@ -198,7 +198,24 @@ FeatureOneServiceObject.newInstance<ServiceA>() { serviceA -> serviceA.doSomethi
 ```
 
 # Download
-Coming soon.
+### Step 1: Add the JitPack repository to your build file
+Add this in your root `build.gradle` at the end of repositories:
+```groovy
+allprojects {
+    repositories {
+	    ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+### Step 2: Add the dependency
+```groovy
+dependencies {
+    implementation 'com.github.sukhai:dfmdagger:VersionTag'
+}
+```
+Current version is [![](https://jitpack.io/v/sukhai/dfmdagger.svg)](https://jitpack.io/#sukhai/dfmdagger)
 
 # License
 ```
