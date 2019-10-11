@@ -2,14 +2,17 @@ apply from: "$rootDir/gradle/android-library.gradle"
 apply from: "$rootDir/gradle/ktlint.gradle"
 apply from: "$rootDir/gradle/tests.gradle"
 
+group = getEnvProperty("ARTIFACT_GROUP")
+version = getEnvProperty("ARTIFACT_VERSION")
+
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin_version}"
+    api "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin_version}"
 
-    implementation "com.google.android.play:core:${versions.google_play}"
+    api "com.google.android.play:core:${versions.google_play}"
 
-    implementation "androidx.appcompat:appcompat:${versions.android_core}"
+    api "androidx.appcompat:appcompat:${versions.android_core}"
 
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
+    api "com.google.dagger:dagger:${versions.dagger}"
+    api "com.google.dagger:dagger-android:${versions.dagger}"
+    api "com.google.dagger:dagger-android-support:${versions.dagger}"
 }

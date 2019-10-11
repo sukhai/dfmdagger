@@ -56,8 +56,8 @@ import javax.inject.Inject
  *
  * ### Example
  * ```
- * class MyApp : FeatureModuleApplication() {
- *     override fun applicationInjector(): AndroidInjector<out FeatureModuleApplication> {
+ * class MyApp : DynamicFeatureModuleApplication() {
+ *     override fun applicationInjector(): AndroidInjector<out DynamicFeatureModuleApplication> {
  *         return DaggerAppComponent.builder()
  *             .application(this)
  *             .build()
@@ -87,7 +87,7 @@ import javax.inject.Inject
  * }
  * ```
  */
-abstract class FeatureModuleApplication : Application(),
+abstract class DynamicFeatureModuleApplication : Application(),
     HasActivityInjector,
     HasSupportFragmentInjector,
     HasServiceInjector,
@@ -155,7 +155,7 @@ abstract class FeatureModuleApplication : Application(),
         injectIfNeeded()
     }
 
-    protected abstract fun applicationInjector(): AndroidInjector<out FeatureModuleApplication>
+    protected abstract fun applicationInjector(): AndroidInjector<out DynamicFeatureModuleApplication>
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentInjector
@@ -204,11 +204,11 @@ abstract class FeatureModuleApplication : Application(),
             synchronized(this) {
                 if (needToInject) {
                     @Suppress("UNCHECKED_CAST")
-                    (component as AndroidInjector<FeatureModuleApplication>)
+                    (component as AndroidInjector<DynamicFeatureModuleApplication>)
                         .inject(this)
                     check(!needToInject) {
                         "The AndroidInjector returned from applicationInjector() did not inject " +
-                                "the FeatureModuleApplication"
+                                "the DynamicFeatureModuleApplication"
                     }
                 }
             }

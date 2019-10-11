@@ -24,43 +24,43 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.sukhaikoh.dfmdagger.AddressableObject
+import com.sukhaikoh.dfmdagger.DynamicFeatureModuleApplication
 import com.sukhaikoh.dfmdagger.FeatureModule
-import com.sukhaikoh.dfmdagger.FeatureModuleApplication
 import com.sukhaikoh.dfmdagger.newInstance
 
 /**
  * Inject the given [featureModule] if possible. It is only possible to inject the
- * [featureModule] if this [Application] is a subtype of [FeatureModuleApplication].
+ * [featureModule] if this [Application] is a subtype of [DynamicFeatureModuleApplication].
  *
- * If this [Application] is a subtype of [FeatureModuleApplication], then
- * [FeatureModuleApplication.inject] will be called for the given [featureModule],
+ * If this [Application] is a subtype of [DynamicFeatureModuleApplication], then
+ * [DynamicFeatureModuleApplication.inject] will be called for the given [featureModule],
  * otherwise [onError] will be called.
  *
  * @param featureModule the [FeatureModule] to be injected into this [Application].
  */
 fun Application.injectIfPossible(featureModule: FeatureModule, onError: (Throwable) -> Unit = {}) {
-    if (this is FeatureModuleApplication) {
+    if (this is DynamicFeatureModuleApplication) {
         inject(featureModule)
     } else {
-        onError(IllegalStateException("This Application is not a subtype of FeatureModuleApplication"))
+        onError(IllegalStateException("This Application is not a subtype of DynamicFeatureModuleApplication"))
     }
 }
 
 /**
  * Inject the given [featureModule] if possible. It is only possible to inject the
- * [featureModule] if this [Context] is a type of [FeatureModuleApplication] or [Activity].
+ * [featureModule] if this [Context] is a type of [DynamicFeatureModuleApplication] or [Activity].
  *
- * If this [Context] is a type of [FeatureModuleApplication] or [Activity], then
- * [FeatureModuleApplication.inject] will be called for the given [featureModule],
+ * If this [Context] is a type of [DynamicFeatureModuleApplication] or [Activity], then
+ * [DynamicFeatureModuleApplication.inject] will be called for the given [featureModule],
  * otherwise [onError] will be called.
  *
  * @param featureModule the [FeatureModule] to be injected into this [Context].
  */
 fun Context.injectIfPossible(featureModule: FeatureModule, onError: (Throwable) -> Unit = {}) {
     when (this) {
-        is FeatureModuleApplication -> inject(featureModule)
+        is DynamicFeatureModuleApplication -> inject(featureModule)
         is Activity -> inject(featureModule)
-        else -> onError(IllegalStateException("This Context is not a FeatureModuleApplication or Activity"))
+        else -> onError(IllegalStateException("This Context is not a DynamicFeatureModuleApplication or Activity"))
     }
 }
 

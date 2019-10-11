@@ -65,7 +65,7 @@ import javax.inject.Inject
  * // @Keep is required if using proguard/R8
  * @Keep
  * class MyFeatureInjector : FeatureModuleInjector() {
- *     override fun inject(application: FeatureModuleApplication) {
+ *     override fun inject(application: DynamicFeatureModuleApplication) {
  *         DaggerMyFeatureComponent.builder()
  *             .appComponent(application.appComponent())
  *             .myFeatureActivityModule(MyFeatureActivityModule())
@@ -149,5 +149,5 @@ abstract class FeatureModuleInjector {
      *
      * @param application the application.
      */
-    abstract fun inject(application: FeatureModuleApplication)
+    abstract fun inject(application: DynamicFeatureModuleApplication)
 }

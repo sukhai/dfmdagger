@@ -21,10 +21,10 @@ import android.content.Context
 import com.google.android.play.core.splitcompat.SplitCompat
 
 /**
- * An [Application] that extends [FeatureModuleApplication] with included [SplitCompat]
+ * An [Application] that extends [DynamicFeatureModuleApplication] with included [SplitCompat]
  * installation.
  */
-abstract class SplitFeatureModuleApplication : FeatureModuleApplication() {
+abstract class SplitDynamicFeatureModuleApplication : DynamicFeatureModuleApplication() {
     override fun attachBaseContext(p0: Context?) {
         super.attachBaseContext(p0)
         SplitCompat.install(this)
